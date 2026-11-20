@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GAME ZONE - Ludo, Chess & Carrom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Decorative Floating Shapes & Sparkles -->
+    <div class="bg-shapes" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">★</i>
+        <i class="sparkle s3">✦</i>
+        <i class="sparkle s4">★</i>
+    </div>
+
+    <!-- Top Navigation Bar (Hidden on First Page, Shown on All Other Pages) -->
+    <header class="top-bar" id="topBar">
+        <button class="icon-btn" id="backBtn" onclick="AppRouter.goBack()" aria-label="Back">⬅️</button>
+        <button class="icon-btn" id="settingsBtn" onclick="AppRouter.openSettings()" aria-label="Settings">⚙️</button>
+    </header>
+
+    <!-- SCREEN 1: Next-Level Decorative Landing Page -->
+    <section class="screen active" id="screen-home">
+        <div class="top-ribbon">✨ ARCADE EDITION ✨</div>
+
+        <div class="hero-card">
+            <div class="corner-pin tl">★</div>
+            <div class="corner-pin tr">★</div>
+            <div class="corner-pin bl">✦</div>
+            <div class="corner-pin br">✦</div>
+
+            <div class="stickers">
+                <span class="st st-dice">🎲</span>
+                <span class="st st-chess">♟️</span>
+                <span class="st st-carrom">🎯</span>
+            </div>
+
+            <h1>
+                <span class="word-game">GAME</span>
+                <span class="word-zone">ZONE</span>
+            </h1>
+
+            <div class="pill-strip">
+                <span class="chip chip-ludo">LUDO</span>
+                <span class="chip chip-chess">CHESS</span>
+                <span class="chip chip-carrom">CARROM</span>
+            </div>
+        </div>
+
+        <button class="start-btn" onclick="AppRouter.navigate('screen-select')">
+            <span class="btn-shine"></span>
+            <span class="btn-label">▶ START PLAYING</span>
+        </button>
+    </section>
+
+    <!-- SCREEN 2: Game Selection Screen -->
+    <section class="screen" id="screen-select">
+        <div class="page-badge">🎮 PICK YOUR GAME</div>
+
+        <div class="game-list">
+            <div class="game-box ludo-box" onclick="AppRouter.navigate('screen-ludo')">
+                <div class="box-text">
+                    <h2>LUDO</h2>
+                    <small>Human & AI Bot Colors</small>
+                </div>
+                <div class="box-emoji">🎲</div>
+            </div>
+
+            <div class="game-box chess-box" onclick="AppRouter.navigate('screen-chess')">
+                <div class="box-text">
+                    <h2>CHESS</h2>
+                    <small>Human & 3D Steady Bot</small>
+                </div>
+                <div class="box-emoji">♟️</div>
+            </div>
+
+            <div class="game-box carrom-box" onclick="AppRouter.navigate('screen-carrom')">
+                <div class="box-text">
+                    <h2>CARROM</h2>
+                    <small>2P / Bot & Side Change</small>
+                </div>
+                <div class="box-emoji">🎯</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREEN 3: Ludo Screen -->
+    <section class="screen" id="screen-ludo">
+        <div class="game-shell" id="ludo-root">
+            <h2>🎲 LUDO</h2>
+            <p class="placeholder-note">Loading Ludo...</p>
+        </div>
+    </section>
+
+    <!-- SCREEN 4: Chess Screen -->
+    <section class="screen" id="screen-chess">
+        <div class="game-shell" id="chess-root">
+            <h2>♟️ CHESS</h2>
+            <p class="placeholder-note">Loading Chess...</p>
+        </div>
+    </section>
+
+    <!-- SCREEN 5: Carrom Screen -->
+    <section class="screen" id="screen-carrom">
+        <div class="game-shell" id="carrom-root">
+            <h2>🎯 CARROM</h2>
+            <p c1lass="placeholder-note">Loading Carrom...</p>
+        </div>
+    </section>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal-backdrop" id="settingsModal">
+        <div class="modal-box">
+            <h3>⚙️ SETTINGS</h3>
+
+            <div class="setting-item">
+                <div class="setting-top">
+                    <span>Sound Effects</span>
+                    <button class="toggle-chip" id="soundToggle" onclick="SoundFX.toggle()">ON</button>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-top">
+                    <span>Volume</span>
+                    <strong id="volumeLabel">80%</strong>
+                </div>
+                <input type="range" id="volumeSlider" min="0" max="100" value="80" oninput="SoundFX.setVolume(this.value)">
+            </div>
+
+            <button class="done-btn" onclick="AppRouter.closeSettings()">DONE</button>
+        </div>
+    </div>
+
+    <!-- Scripts in Exact Order -->
+    <script src="sound.js"></script>
+    <script src="ludo.js"></script>
+    <script src="chess.js"></script>
+    <script src="carrom.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
